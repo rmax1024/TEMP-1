@@ -62,7 +62,6 @@ esphome:
                       id(last_temp) = id(temp_probe).state;
                   - logger.log: "Apollo Automation: Calling Web Service"
                   - http_request.get:
-                      verify_ssl: false
                       url: !lambda |-
                         // Construct the dynamic URL string in C++
                         std::string url = "https://";
@@ -112,10 +111,6 @@ wifi:
   id: wifi_1
   ap:
     ssid: "Apollo TEMP1B Hotspot"
-
-http_request:
-  useragent: esphome/device
-  timeout: 10s
 
 logger:
 
