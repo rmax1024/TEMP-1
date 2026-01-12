@@ -60,6 +60,7 @@ esphome:
                   - logger.log: "Apollo Automation: Outside Temp Change Detected"
                   - lambda: |-
                       id(last_temp) = id(temp_probe).state;
+                  - logger.log: "Apollo Automation: Calling Web Service"
                   - http_request.get:
                         url: !lambda |-
                           // Construct the dynamic URL string in C++
@@ -79,6 +80,7 @@ esphome:
                                 } else {
                                     ESP_LOGW("http_request", "URL call failed with status code %d", response->status_code);
                                 }
+                  - logger.log: "Apollo Automation: Calling Web Service complete"
                 else: # If Not Then Check OTA And Sleep
                   - if:
                       condition:
