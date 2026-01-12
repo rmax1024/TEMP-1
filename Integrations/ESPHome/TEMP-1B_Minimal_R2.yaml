@@ -118,3 +118,4 @@ packages:
   core: !include Core.yaml
   battery: !include Battery.yaml
   33resistance: !include NewResistance.yaml
+  secrets: !include secrets.yaml
