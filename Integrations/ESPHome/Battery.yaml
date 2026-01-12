@@ -27,12 +27,12 @@ number:
     id: deep_sleep_sleep_duration
     min_value: 0
     max_value: 800
-    step: 1
+    step: 0.05
     mode: box
     update_interval: never
     optimistic: true
     restore_value: true
-    initial_value: 12
+    initial_value: 0.1
     icon: "mdi:arrow-collapse-right"
     entity_category: CONFIG
     unit_of_measurement: "h"

@@ -74,7 +74,7 @@ esphome:
     - light.turn_off: rgb_light
 
 dashboard_import:
-  package_import_url: github://ApolloAutomation/TEMP-1/Integrations/ESPHome/TEMP-1B_Minimal_R2.yaml
+  package_import_url: github://rmax1024/TEMP-1/Integrations/ESPHome/TEMP-1B_Minimal_R2.yaml
   import_full_config: false
 
 safe_mode:
