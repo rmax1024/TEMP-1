@@ -65,11 +65,11 @@ esphome:
                       url: !lambda |-
                         // Construct the dynamic URL string in C++
                         std::string url = "https://";
-                        url += id(api_host_value);
+                        url += !secret api_host_value;
                         url += "/updateLocalData?temperature=";
                         url += to_string(id(temp_probe).state);
                         url += "&api_key=";
-                        url += id(api_key_value);
+                        url += !secret api_key_value;
                         ESP_LOGI("http_request", "URL %s", url.c_str());
                         return url;
                       on_response:
@@ -118,4 +118,3 @@ packages:
   core: !include Core.yaml
   battery: !include Battery.yaml
   33resistance: !include NewResistance.yaml
-  secrets: !include secrets.yaml
