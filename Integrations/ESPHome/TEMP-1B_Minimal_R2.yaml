@@ -65,11 +65,11 @@ esphome:
                       url: !lambda |-
                         // Construct the dynamic URL string in C++
                         std::string url = "https://";
-                        url += "!secret api_host_value";
+                        url += id(api_host_value);
                         url += "/updateLocalData?temperature=";
                         url += to_string(id(temp_probe).state);
                         url += "&api_key=";
-                        url += "!secret api_key_value";
+                        url += id(api_key_value);
                         ESP_LOGI("http_request", "URL %s", url.c_str());
                         return url;
                       on_response:
