@@ -61,28 +61,28 @@ esphome:
                   - lambda: |-
                       id(last_temp) = id(temp_probe).state;
                   - logger.log: "Apollo Automation: Calling Web Service"
-                  - http_request.get:
-                      useragent: esphome/device
-                      timeout: 10s
-                      verify_ssl: false
-                      url: !lambda |-
-                        // Construct the dynamic URL string in C++
-                        std::string url = "https://";
-                        url += "!secret api_host_value";
-                        url += "/updateLocalData?temperature=";
-                        url += to_string(id(temp_probe).state);
-                        url += "&api_key=";
-                        url += "!secret api_key_value";
-                        ESP_LOGI("http_request", "URL %s", url.c_str());
-                        return url;
-                      on_response:
-                        then:
-                          - lambda: |-
-                              if (response->status_code == 200) {
-                                  ESP_LOGI("http_request", "URL call successful");
-                              } else {
-                                  ESP_LOGW("http_request", "URL call failed with status code %d", response->status_code);
-                              }
+                  # - http_request.get:
+                  #     useragent: esphome/device
+                  #     timeout: 10s
+                  #     verify_ssl: false
+                  #     url: !lambda |-
+                  #       // Construct the dynamic URL string in C++
+                  #       std::string url = "https://";
+                  #       url += "!secret api_host_value";
+                  #       url += "/updateLocalData?temperature=";
+                  #       url += to_string(id(temp_probe).state);
+                  #       url += "&api_key=";
+                  #       url += "!secret api_key_value";
+                  #       ESP_LOGI("http_request", "URL %s", url.c_str());
+                  #       return url;
+                  #     on_response:
+                  #       then:
+                  #         - lambda: |-
+                  #             if (response->status_code == 200) {
+                  #                 ESP_LOGI("http_request", "URL call successful");
+                  #             } else {
+                  #                 ESP_LOGW("http_request", "URL call failed with status code %d", response->status_code);
+                  #             }
                   - logger.log: "Apollo Automation: Calling Web Service complete"
                 else: # If Not Then Check OTA And Sleep
                   - if:
