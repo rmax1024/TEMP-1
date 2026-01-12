@@ -60,6 +60,25 @@ esphome:
                   - logger.log: "Apollo Automation: Outside Temp Change Detected"
                   - lambda: |-
                       id(last_temp) = id(temp_probe).state;
+                  - http_request.get:
+                        url: !lambda |-
+                          // Construct the dynamic URL string in C++
+                          std::string url = "https://";
+                          url += "!secret api_host_value";
+                          url += "/updateLocalData?temperature=";
+                          url += to_string(id(temp_probe).state);
+                          url += "&api_key=";
+                          url += "!secret api_key_value";
+                          ESP_LOGI("http_request", "URL %s", url.c_str());
+                          return url;
+                        on_response:
+                          then:
+                            - lambda: |-
+                                if (response->status_code == 200) {
+                                    ESP_LOGI("http_request", "URL call successful");
+                                } else {
+                                    ESP_LOGW("http_request", "URL call failed with status code %d", response->status_code);
+                                }
                 else: # If Not Then Check OTA And Sleep
                   - if:
                       condition:
