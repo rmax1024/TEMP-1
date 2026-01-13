@@ -69,7 +69,9 @@ esphome:
                         url += to_string(id(temp_probe).state);
                         url += "&apiKey=${api_key_value}";
                         url += "&batteryPercent=";
-                        url += to_string(id(batt_pct).state);
+                        url += to_string(id(batt_pct).state)
+                        url += "&batteryVoltage=";
+                        url += to_string(id(batt_v).state);
                         ESP_LOGI("http_request", "URL %s", url.c_str());
                         return url;
                       on_response:
