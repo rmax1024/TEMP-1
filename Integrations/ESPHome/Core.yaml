@@ -1,5 +1,7 @@
 substitutions:
   version: "25.11.20.1"
+  api_host_value: !secret api_host_value
+  api_key_value: !secret api_key_value
 
 esp32:
   board: esp32-c3-devkitm-1
@@ -64,14 +66,6 @@ globals:
     restore_value: no
     type: bool
     initial_value: "false"
-  - id: api_host_value
-    type: std::string
-    restore_value: yes
-    initial_value: !secret api_host_value
-  - id: api_key_value
-    type: std::string
-    restore_value: yes
-    initial_value: !secret api_key_value
 
 captive_portal:
 
